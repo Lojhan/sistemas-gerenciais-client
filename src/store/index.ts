@@ -3,7 +3,7 @@ import requests from '@/plugins/requests';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from "@/router/index"
-import axios from '@/plugins/axios';
+import { axiosInstance, axiosVending } from '@/plugins/axios';
 import { TOKEN } from '@/plugins/constants';
 
 Vue.use(Vuex)
@@ -39,34 +39,27 @@ export default new Vuex.Store({
       localStorage.setItem('token', state.user.token);
       localStorage.setItem('username', state.user.username);
       localStorage.setItem('type', state.user.type);
-      axios.defaults.headers['Authorization'] = 'Bearer ' + TOKEN
+      axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + TOKEN
+      axiosVending.defaults.headers['Authorization'] = 'Bearer ' + TOKEN
     } catch (error) {
       state.logging = 'error';
     }
   },   
   addToCart(state, payload) {
     state.cart.push(payload)
-    console.log(payload)
-    console.log(state.cart)
   },
   removeFromCart(state, payload) {
     state.cart.splice(state.cart.indexOf(payload), 1)
-  }
+  },
+  clearCart(state) {
+    state.cart = []
+  },
   },
   actions: {
-    authenticate: (
-      { commit },
-      payload: { username: string; password: string }
-    ) => commit("authenticate", payload),
-
-    addToCart: (
-      { commit },
-      payload
-    ) => commit("addToCart", payload),
-    removeFromCart: (
-      { commit },
-      payload
-    ) => commit("removeFromCart", payload),
+    authenticate: ({ commit }, payload ) => commit("authenticate", payload),
+    addToCart: ({ commit }, payload ) => commit("addToCart", payload),
+    removeFromCart: ({ commit }, payload ) => commit("removeFromCart", payload),
+    clearCart: ({ commit } ) => commit("clearCart"),
   },
   modules: {
   }

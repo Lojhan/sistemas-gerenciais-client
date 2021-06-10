@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000'
+export const axiosInstance = axios.create({
+    baseURL: 'http://192.168.15.5:3000'
 })
 
-export default axiosInstance
+
+export const axiosVending = axios.create({
+    baseURL: 'http://192.168.15.5:3001'
+})
