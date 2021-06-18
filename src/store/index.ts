@@ -54,12 +54,22 @@ export default new Vuex.Store({
   clearCart(state) {
     state.cart = []
   },
+  return(state) {
+    state.user = {
+      token: localStorage.getItem('token')!,
+      username: localStorage.getItem('username')!,
+      type: localStorage.getItem('type')! as 'adm' | 'user'
+    };
+    axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + TOKEN
+    axiosVending.defaults.headers['Authorization'] = 'Bearer ' + TOKEN
+  }
   },
   actions: {
     authenticate: ({ commit }, payload ) => commit("authenticate", payload),
     addToCart: ({ commit }, payload ) => commit("addToCart", payload),
     removeFromCart: ({ commit }, payload ) => commit("removeFromCart", payload),
     clearCart: ({ commit } ) => commit("clearCart"),
+    return: ({ commit } ) => commit("return"),
   },
   modules: {
   }

@@ -54,6 +54,7 @@ export default {
        async buy() {
          try {
            const { data } = await requests.buy(this.cart)
+           this.$router.push('/purchases/' + data.uuid)
            console.log(data)
          } catch (e) {
 

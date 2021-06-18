@@ -23,7 +23,35 @@ const routes: Array<RouteConfig> = [
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/Cart.vue')
-  }
+  },
+  {
+    path: '/purchases',
+    name: 'Purchases',
+    component: () => import('../views/Purchases.vue')
+  },
+  {
+    path: '/purchases/:id',
+    name: 'Purchase',
+    component: () => import('../views/PurchaseDetails.vue'),
+    children: [
+      
+      {
+        path: '/card',
+        name: 'Card',
+        component: () => import('../views/Product.vue')
+      },
+      {
+        path: '/ticket',
+        name: 'Ticket',
+        component: () => import('../views/Cart.vue')
+      },
+      {
+        path: '/montly-ticket',
+        name: 'MontlyTicket',
+        component: () => import('../views/Purchases.vue')
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({

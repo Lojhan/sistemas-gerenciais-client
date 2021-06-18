@@ -63,11 +63,12 @@ export default Vue.extend({
         return {
             store: this.$store.getters,
             items: [
-                { name: 'Produtos', link: '/products', type: 'item', roles: ['adm', 'user', 'client', undefined] },
-                { name: 'Login', link: '', type: 'login', roles: [undefined] },
+                { name: 'Produtos', link: '/products', type: 'item', roles: ['adm', 'user', 'client', 'undefined'] },
+                { name: 'Login', link: '', type: 'login', roles: ['undefined'] },
                 { name: this.$store.getters.username, link: '', type: 'menu', roles: ['adm', 'user', 'client'], 
                     children: [
                         { name: 'Carrinho', link: '/cart', type: 'item', roles: ['adm', 'user', 'client'] },
+                        { name: 'Minhas compras', link: '/purchases', type: 'item', roles: ['adm', 'user', 'client'] },
                         { name: 'Sair', link: '/logout', type: 'item', roles: ['adm', 'user', 'client'] },
                         ],
                 },

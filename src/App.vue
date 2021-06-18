@@ -11,6 +11,9 @@ import Navbar from '@/components/TheNavBar.vue'
 
 export default Vue.extend({
   components: { Navbar },
+  mounted() {
+      this.$store.commit('return')
+  }
 })
 </script>
 <style>
